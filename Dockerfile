@@ -2,10 +2,8 @@ FROM node:18.7.0
 
 WORKDIR /
 
-COPY ["package.json", "package-lock.json*", "./"]
+COPY . .
 
 RUN npm install
-
-COPY . .
 
 CMD [ "node", "server.js"]
