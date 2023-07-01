@@ -5,6 +5,7 @@ const uri = "mongodb+srv://test:nBQQiZcHeYW1S215@projecttest.dqvhrv1.mongodb.net
 
 const client = new MongoClient(uri);
 
+//makes 16 char user ID
 makeId = () => {
     let ID = "";
     let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -14,9 +15,10 @@ makeId = () => {
     return ID;
 }
 
+//this makes example document, hook it up with signup button
 async function run() {
   try {
-    const database = client.db('testdb');
+    const database = client.db('testdb'); //replace this with db name
     const user = database.collection('User');
 
     const userdata = { id: makeId(), name: "test2item", bookings:[] }
