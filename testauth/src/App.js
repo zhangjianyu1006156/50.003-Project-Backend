@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 
+
 function App() {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
@@ -24,6 +25,7 @@ function App() {
           }
         )
         .then((res) => {
+          console.log(res.data); // Check the response in the console
           setProfile(res.data);
         })
         .catch((err) => console.log(err));
@@ -87,3 +89,4 @@ function App() {
   );
 }
 export default App;
+
