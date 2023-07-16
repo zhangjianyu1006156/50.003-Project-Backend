@@ -1,10 +1,20 @@
+require('dotenv').config()
+
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose')
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
+const db = mongoose.connection
+db.on('error', (error) => console.error(error))
+db.once('open', () => console.log('Connected successfully to database'))
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+app.use(express.json())
+
+const productsRouter = require('./routes/products')
+app.use('/products', productsRouter)
+
+const bookingsRouter = require('./routes/bookings');
+app.use('/bookings', bookingsRouter);
+
+app.listen(3000, () => console.log('Listening on port 3000'))

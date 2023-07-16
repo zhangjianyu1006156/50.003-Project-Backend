@@ -1,0 +1,29 @@
+GET http://localhost:3000/products
+
+###
+
+GET http://localhost:3000/products/64b3e8c79ea4077337bd9571
+
+###
+
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+    "product_name": "iphone 11",
+    "product_price": 1200
+}
+
+###
+DELETE http://localhost:3000/products/64b2040f578eca09720f634d
+
+###
+POST http://localhost:3000/bookings
+Content-Type: application/json
+
+{
+    "product_name": "iphone",
+    "user_id": "123456",
+    "price_paid": 1200,
+    "savings_obtained": 100
+}
