@@ -4,12 +4,12 @@ const ProductModel = require('../models/product');
 
 // Getting all products' names and prices
 router.get('/', async (req, res) => {
-  try {
-      const products = await ProductModel.find({}, 'product_name product_price');
+    try {
+      const products = await ProductModel.find({}, 'name klook_price tripcom_price');
       res.json(products);
-  } catch (err) {
+    } catch (err) {
       res.status(500).json({ message: err.message });
-  }
+    }
 });
 
 // Getting information about a specific product
@@ -20,8 +20,12 @@ router.get('/:product_id', getProduct, (req, res) => {
 // Create a Product
 router.post('/', async (req, res) => {
     const product = new ProductModel({
-        product_name: req.body.product_name,
-        product_price: req.body.product_price
+        product_id: req.body.product_id,
+        name: req.body.name,
+        description: req.body.description,
+        image: req.body.image,
+        klook_price: req.body.klook_price,
+        tripcom_price: req.body.tripcom_price
     })
     try {
         const newProduct = await product.save()
@@ -32,19 +36,19 @@ router.post('/', async (req, res) => {
 });
 
 // Update Product
-router.patch('/:id', getProduct, async (req, res) => {
-    
-});
+router.patch('/:product_id', getProduct, async (req, res) => {
+    // Implement update logic here based on req.body
+  });
 
 // Delete Product
-router.delete('/:id', getProduct, async (req, res) => {
+router.delete('/:product_id', getProduct, async (req, res) => {
     try {
-        await ProductModel.findByIdAndRemove(req.params.id);
-        res.json({ message: 'Deleted Product' });
+      await ProductModel.findByIdAndRemove(req.params.product_id);
+      res.json({ message: 'Deleted Product' });
     } catch (err) {
-        res.status(500).json({ message: err.message });
+      res.status(500).json({ message: err.message });
     }
-});
+  });
 
 async function getProduct(req, res, next) {
   let product;

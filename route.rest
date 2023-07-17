@@ -2,7 +2,7 @@ GET http://localhost:3000/products
 
 ###
 
-GET http://localhost:3000/products/64b3e8c79ea4077337bd9571
+GET http://localhost:3000/products/64b4f826a53a00568e89c821
 
 ###
 
@@ -10,23 +10,32 @@ POST http://localhost:3000/products
 Content-Type: application/json
 
 {
-    "product_name": "iphone 11",
-    "product_price": 1200
+    "product_id": "12345678",
+    "name": "Nankai Railway",
+    "description": "this is an awesome railway",
+    "image": "wwww.xxxx.com",
+    "klook_price": 20.0,
+    "tripcom_price": 10.0
 }
 
 ###
-DELETE http://localhost:3000/products/64b2040f578eca09720f634d
+DELETE http://localhost:3000/products/64b3e8c79ea4077337bd9571
 
 ###
-POST http://localhost:3000/bookings
+POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "product_name": "iphone 14 pro max",
-    "user_id": "12345678",
-    "price_paid": 1300,
-    "savings_obtained": 100
+    "user_id": "64b4f826a",
+    "name": "John",
+    "bookings": [
+        {
+            "name": "iphone 14 pro max",
+            "price_paid": 1300,
+            "savings": 100
+        }
+    ]
 }
 
 ###
-GET http://localhost:3000/bookings/12345678
+GET http://localhost:3000/users/64b4f826a
