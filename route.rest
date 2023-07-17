@@ -22,8 +22,11 @@ POST http://localhost:3000/bookings
 Content-Type: application/json
 
 {
-    "product_name": "iphone",
-    "user_id": "123456",
-    "price_paid": 1200,
+    "product_name": "iphone 14 pro max",
+    "user_id": "12345678",
+    "price_paid": 1300,
     "savings_obtained": 100
 }
+
+###
+GET http://localhost:3000/bookings/12345678

@@ -18,4 +18,23 @@ router.post('/', async (req, res) => {
     }
 });
 
+// Get User Bookings
+router.get('/:user_id', async (req, res) => {
+    const user_id = req.params.user_id;
+    try {
+      // Find all bookings for the given user_id
+      const bookings = await BookingModel.find({ user_id });
+  
+      if (bookings.length === 0) {
+        // No bookings found for the user_id
+        return res.status(404).json({ message: 'No bookings found for this user' });
+      }
+  
+      // Return the list of bookings as the response
+      res.json(bookings);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+});
+
 module.exports = router;
