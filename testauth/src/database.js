@@ -27,8 +27,8 @@ async function run(data) {
     // this needs to be have an axios function to get back the profile data
     const userdata = {
       id: makeId(),
+      data,
       name: "test2item",
-      profile: data,
       bookings: [],
     };
     user.insertOne(userdata);
@@ -36,7 +36,7 @@ async function run(data) {
     console.log("userdata added:", userdata);
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    client.close();
   }
 }
 module.exports = { run };
