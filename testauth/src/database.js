@@ -18,10 +18,10 @@ const makeId = () => {
 };
 
 //this makes example document, hook it up with signup button
-async function run(data) {
+async function run(collectionname,data) {
   try {
     const database = client.db("testdb"); //replace this with db name
-    const user = database.collection("User");
+    const user = database.collection(collectionname);
 
     // this also needs a push request to send the token key to this express.js
     // this needs to be have an axios function to get back the profile data

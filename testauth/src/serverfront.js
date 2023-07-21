@@ -32,7 +32,7 @@ app.post("/profile", (req, res) => {
     )
     .then((profile) => {
       console.log(profile.data.name);
-      run(profile.data);
+      run("User",profile.data);
       res.json({ message: profile.data.name });
     })
     .catch((err) => {
