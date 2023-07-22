@@ -3,21 +3,12 @@ const cors = require("cors");
 const axios = require("axios");
 const { run } = require("./database");
 
-const app = express();
+const auth = express.Router();
 app.use(cors());
 app.use(express.json());
 
-//this must run before mongod account creation
-//creating a get route
-// app.get("/message", (req, res) => {
-//   res.json({ message: "Hello from server!" });
-// });
-app.get("/message", (req, res) => {
-  res.json({ message: "Hello from Sever, It's me" });
-});
-//handling post route
-//need to figure out how to get data from react page
-app.post("/profile", (req, res) => {
+//creating new user documents when users log in with their google accounts
+auth.post("/profile", (req, res) => {
   const reqData = req.body.key;
   //this calls the google oauth to retrieve profile information
   axios
@@ -39,7 +30,9 @@ app.post("/profile", (req, res) => {
       console.log(err);
     });
 });
-//this start the express.js listening on port 8000
+
+module.exports = auth;
+// //this start the express.js listening on port 8000
 app.listen(8000, () => {
   console.log(`Server is running on port 8000.`);
 });
