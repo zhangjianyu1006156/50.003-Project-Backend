@@ -1,6 +1,6 @@
 const {MongoClient} = require('mongodb');
 const {mongoURI,mongoDBName} = require('./testhelpers')
-const { run } = require("../testauth/src/database");
+const { run } = require("../database");
 
 describe('MongoDB tests', () => {
   let connection;
