@@ -49,18 +49,14 @@ async function teardown() {
             useNewUrlParser: true, 
             useUnifiedTopology: true 
         }).then(() => {
-            const UserModel = mongoose.model('User', User);
-        
-            // Deleting a single document
-            UserModel.deleteOne({ user_id: user_id }, (err, _) => {
-              if (err) {
-                throw err;
-              }
-              mongoose.connection.close();
+            User.deleteOne({ user_id: user_id }).then(() => {
+                mongoose.connection.close();    
+            }).catch((error) => {
+                throw error;
             });
           }).catch((err) => {
             throw err;
-        });        
+        });    
     } catch (error) {
         console.error("Teardown Failed. " + error);
         throw error;
