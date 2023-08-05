@@ -5,8 +5,9 @@ const ProductModel = require('../models/product');
 // Getting all products' names and prices
 router.get('/', async (req, res) => {
     try {
-      const products = await ProductModel.find({}, 'name klook_price tripcom_price');
+      const products = await ProductModel.find({});
       res.json(products);
+      console.log("/ endpoint is running")
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
