@@ -1,31 +1,59 @@
-const mongoose = require('mongoose');
-
+const { json } = require("express");
+const mongoose = require("mongoose");
+// id: details.id,
+// placename: details.placename,
+// bookingprice: details.bookingprice,
+// sourcewebsite: details.sourcewebsite,
+// images: details.images,
+// rating: details.rating,
+// bookingmode: details.bookingmode,
 const bookingSchema = new mongoose.Schema({
-  name: {
+  id: {
     type: String,
-    required: true
+    required: true,
   },
-  price_paid: {
-    type: Number,
-    required: true
+  placename: {
+    type: String,
+    required: true,
   },
-  savings: {
+  bookingprice: {
     type: Number,
-    required: true
-  }
+    required: true,
+  },
+  sourcewebsite: {
+    type: String,
+    required: true,
+  },
+  images: {
+    type: String,
+    required: true,
+  },
+  rating: {
+    type: Number,
+    required: true,
+  },
+  bookingmode: {
+    type: String,
+    required: true,
+  },
 });
 
 const userSchema = new mongoose.Schema({
   user_id: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+  },
+  data: {
+    type: Object,
+    default: {},
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
-  bookings: [bookingSchema]
+  bookings: [bookingSchema],
 });
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
+module.exports = { User };

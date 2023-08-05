@@ -1,11 +1,9 @@
 const express = require("express");
-const cors = require("cors");
 const axios = require("axios");
 const { run } = require("../database");
 
 const router = express.Router();
 const UserModel = require("../models/user");
-router.use(cors());
 
 //creating a new user document on login with google account
 router.post("/profile", (req, res) => {
@@ -22,22 +20,27 @@ router.post("/profile", (req, res) => {
       }
     )
     .then((profile) => {
-      console.log(profile.data.name);
-      run("User", profile.data);
-      res.json({ message: profile.data.name });
+      run(profile.data).then((result) => {
+        res.status(201).json({ result });
+      });
     })
     .catch((err) => {
-      console.log(err);
+      res.status(400).json({ message: err.message });
     });
 });
 
 // Book a Product
 router.post("/", async (req, res) => {
-  const { user_id, name, bookings } = req.body;
+  const details = req.body.key;
+  const user_id = red.body.id;
   const booking = {
-    name: bookings[0].name,
-    price_paid: bookings[0].price_paid,
-    savings: bookings[0].savings,
+    id: details.id,
+    placename: details.placename,
+    bookingprice: details.bookingprice,
+    sourcewebsite: details.sourcewebsite,
+    images: details.images,
+    rating: details.rating,
+    bookingmode: details.bookingmode,
   };
 
   try {

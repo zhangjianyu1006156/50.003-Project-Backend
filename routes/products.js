@@ -15,7 +15,11 @@ router.get('/', async (req, res) => {
 
 // Getting information about a specific product
 router.get('/:product_id', getProduct, (req, res) => {
-  res.json(res.product);
+  try{
+    res.json(res.product);
+  } catch (err){
+    res.status(500).json({ message: err.message });
+  }
 });
 
 // Create a Product
