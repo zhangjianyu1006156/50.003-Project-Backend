@@ -146,9 +146,3 @@ describe("Frontend – Backend Integration Tests", () => {
         await teardown();
     }); 
 })
-
-describe("Data Collection – Backend Integration Tests", () => {
-    test ("Testing /users/:user_id Endpoint for Booking Page (Frontend)", () => {
-
-    })
-})
