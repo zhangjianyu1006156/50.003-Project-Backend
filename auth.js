@@ -22,6 +22,7 @@ auth.post("/profile", (req, res) => {
       }
     )
     .then((profile) => {
+      console.log("logged in and profile.data.name is:")
       console.log(profile.data.name);
       run("User", profile.data);
       res.json({ message: profile.data.name });
