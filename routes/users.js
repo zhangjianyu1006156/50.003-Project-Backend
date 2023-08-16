@@ -30,9 +30,9 @@ router.post("/profile", (req, res) => {
 });
 
 // Book a Product
-router.post("/book", (req, res) => {
-  const details = req.body.data.key;
-  const user_id = red.body.data.id;
+router.post("/", async (req, res) => {
+  const details = req.body.key;
+  const user_id = red.body.id;
   const booking = {
     id: details.id,
     placename: details.placename,
@@ -45,7 +45,7 @@ router.post("/book", (req, res) => {
 
   try {
     // Find the user with the given user_id
-    // const user = await UserModel.findOne({ user_id });
+    const user = await UserModel.findOne({ user_id });
     // if (!user) {
     //   // If the user does not exist, create a new user with the given user_id and name
     //   const newUser = new UserModel({
@@ -64,7 +64,7 @@ router.post("/book", (req, res) => {
     user.bookings.push(booking);
 
     // Save the updated user document
-    // const updatedUser = await user.save();
+    const updatedUser = await user.save();
 
     // Return the updated user as the response
     res.status(201).json(updatedUser);
